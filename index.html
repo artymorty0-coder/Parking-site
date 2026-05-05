@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Бронювання парковки</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #1e1e1e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      width: 320px;
+      text-align: center;
+    }
+
+    select, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+    }
+
+    button {
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Бронювання парковки</h1>
+
+  <select id="service"></select>
+  <select id="time"></select>
+
+  <button onclick="book()">Забронювати</button>
+
+  <p id="result"></p>
+</div>
+
+<script>
+const services = [
+  "Стандартне місце",
+  "Критий паркінг",
+  "VIP місце",
+  "Електрозарядка"
+];
+
+const times = [
+  "08:00 - 09:00",
+  "09:00 - 10:00",
+  "10:00 - 11:00",
+  "11:00 - 12:00",
+  "12:00 - 13:00"
+];
+
+const serviceSelect = document.getElementById("service");
+const timeSelect = document.getElementById("time");
+
+// заполняем списки
+services.forEach(s => {
+  let option = document.createElement("option");
+  option.text = s;
+  serviceSelect.add(option);
+});
+
+times.forEach(t => {
+  let option = document.createElement("option");
+  option.text = t;
+  timeSelect.add(option);
+});
+
+function book() {
+  const s = serviceSelect.value;
+  const t = timeSelect.value;
+
+  if (!s || !t) {
+    document.getElementById("result").innerText = "Оберіть все!";
+    return;
+  }
+
+  document.getElementById("result").innerText =
+    "Заброньовано: " + s + " на " + t;
+}
+</script>
+
+</body>
+</html>
